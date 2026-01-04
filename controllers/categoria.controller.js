@@ -9,7 +9,7 @@ import {
 export const createCategoriaController = async (req, res) => {
   try {
     const { name, type, color, icon } = req.body;
-    console.log(req.body);
+
     const userId = req.user.userId;
     const id = await createCategoriaService(name, type, userId, color, icon);
     res.status(201).json({ id });

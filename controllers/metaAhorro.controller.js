@@ -62,7 +62,7 @@ export const createContribucionMetaController = async (req, res) => {
         const userId = req.user.userId;
         const { id_meta } = req.params;
         const { amount, note } = req.body;
-        console.log(userId, id_meta, amount, note);
+
         const id = await createContribucionService(userId, id_meta, amount, note);
         res.status(201).json({ id });
     } catch (error) {
@@ -94,7 +94,7 @@ export const deleteContribucionMetaController = async (req, res) => {
     try {
         const userId = req.user.userId;
         const { id_meta, id_contribucion } = req.params;
-        console.log(userId, id_meta, id_contribucion);
+
         await deleteContribucionService(userId, id_meta, id_contribucion);
         res.json({ message: 'Contribución eliminada' });
     } catch (error) {

@@ -104,6 +104,7 @@ export const getTransaccionesUserService = async (id_usuario) => {
             amount: Number(transaction.monto),
             category: transaction.nombre_categoria,
             date: fecha.toISOString().split('T')[0],
+            icon: transaction.icon,
         };
 
     });
