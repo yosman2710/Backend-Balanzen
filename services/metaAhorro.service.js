@@ -26,7 +26,7 @@ export const findMetaAhorroByIdService = async (userId, id_meta) => {
     const contribuciones = await getContribucionesByMeta(id_meta);
     return {
         id: meta.id_meta,
-        name: meta.nombre_meta,
+        nombre_meta: meta.nombre_meta,
         targetAmount: Number(meta.monto_objetivo),
         currentAmount: Number(meta.monto_actual),
         deadline: meta.fecha_limite,
