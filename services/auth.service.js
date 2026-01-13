@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 import md5 from 'md5';
-import { findUserByEmail, createUsuario } from '../models/usuarios.model.js';
+import { findUserByEmail, createUsuario, updatePassword } from '../models/usuarios.model.js';
 
 export const registerUserService = async (nombre, email, password, fecha_nacimiento, genero, pais) => {
     if (!nombre || !email || !password) {
@@ -51,5 +51,10 @@ export const loginUserService = async (email, password) => {
         email: user.email,
         token: token,
     };
+};
+
+export const updatePasswordUserService = async (id, password) => {
+    const hashedPassword = md5(password);
+    return await updatePassword(id, hashedPassword);
 };
 

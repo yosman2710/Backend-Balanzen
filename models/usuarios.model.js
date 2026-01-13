@@ -34,3 +34,14 @@ export const updateUsuario = async (id, { nombre, email, fecha_nacimiento, gener
   const { rows } = await db.query(query, [id, nombre, email, fecha_nacimiento, genero, pais]);
   return rows[0];
 };
+
+export const updatePassword = async (id, password) => {
+  const query = `
+    UPDATE usuarios
+    SET password = $2
+    WHERE id_usuario = $1
+    RETURNING *
+  `;
+  const { rows } = await db.query(query, [id, password]);
+  return rows[0];
+};  

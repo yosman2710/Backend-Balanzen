@@ -1,4 +1,4 @@
-import { loginUserService, registerUserService } from '../services/auth.service.js';
+import { loginUserService, registerUserService, updatePasswordUserService } from '../services/auth.service.js';
 
 export const login = async (req, res) => {
     const { email, password } = req.body;
@@ -29,4 +29,20 @@ export const register = async (req, res) => {
 export const verify = (req, res) => {
     // req.user viene del middleware verifyToken
     res.json(req.user);
+};
+
+export const updatePassword = async (req, res) => {
+    const userId = req.user.userId;
+    const { password } = req.body;
+    try {
+        const user = await updatePasswordUserService(userId, password);
+        res.status(200).json({
+            ...user,
+            message: 'Password actualizado correctamente'
+        });
+    } catch (err) {
+        res.status(err.status || 500).json({
+            error: err.message || 'Error del servidor'
+        });
+    }
 };
